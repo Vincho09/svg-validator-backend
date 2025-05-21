@@ -13,8 +13,8 @@ def analizar_svg(svg_bytes):
             {"type": "image", "image_url": {"url": f"data:image/svg+xml;base64,{b64_svg}"}}
         ]
     }
-    respuesta = client.chat.completions.create(
-        model="gpt-4-vision-preview",
+respuesta = client.chat.completions.create(
+    model="gpt-4-vision",
         messages=[mensaje],
         max_tokens=1000
     )
