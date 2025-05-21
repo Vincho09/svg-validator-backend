@@ -9,13 +9,21 @@ def analizar_svg(svg_bytes):
     mensaje = {
         "role": "user",
         "content": [
-            {"type": "text", "text": "Validá esta ilustración SVG según las reglas de Andes Ilustraciones. Respondé con el formato de checklist."},
-            {"type": "image", "image_url": {"url": f"data:image/svg+xml;base64,{b64_svg}"}}
+            {
+                "type": "text",
+                "text": "Validá esta ilustración SVG según las reglas de Andes Ilustraciones. Respondé con el formato de checklist."
+            },
+            {
+                "type": "image",
+                "image_url": {"url": f"data:image/svg+xml;base64,{b64_svg}"}
+            }
         ]
     }
-respuesta = client.chat.completions.create(
-    model="gpt-4-vision",
+
+    respuesta = client.chat.completions.create(
+        model="gpt-4-vision",
         messages=[mensaje],
         max_tokens=1000
     )
+
     return {"respuesta": respuesta.choices[0].message.content}
